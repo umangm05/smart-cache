@@ -9,13 +9,11 @@ class HashMap<T> {
     }
 
     get(key: string): T | null {
-        console.log("🚀 ~ HashMap<T> ~ get ~ key:", key, this.store)
         const value = this.store[key] || null;
         return value;
     }
 
     put(key: string, value: T | null): Record<string, T | null> {
-        console.log("🚀 ~ HashMap<T> ~ put ~ key:", key, this.store)
         if (!value) {
             this.remove(key)
             return { [key]: value }
@@ -26,7 +24,6 @@ class HashMap<T> {
     }
 
     remove(key: string) {
-        console.log("🚀 ~ HashMap<T> ~ remove ~ key:", key, this.store)
         delete this.store[key];
     }
 

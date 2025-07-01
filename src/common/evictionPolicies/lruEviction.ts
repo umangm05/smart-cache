@@ -39,7 +39,6 @@ class LRUEvictionPolicy {
             this.evict()
         }
         const node = this.list.attach({key, value})
-        console.log("🚀 ~ LRUEvictionPolicy ~ node:", node?.value)
         try {
             this.storage.put(key, node)
         } catch (e) {

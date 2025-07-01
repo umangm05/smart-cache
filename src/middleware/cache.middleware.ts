@@ -11,20 +11,16 @@ export class CacheInterceptor implements NestInterceptor {
         const now = Date.now()
         const { method, url, body } = context.switchToHttp().getRequest()
 
-        console.log('Before...', method, url, body);
+        const cachedResponse = this.cache.get({ method, url, ...body })
 
-        const cachedResponse = this.cache.get({method, url, ...body})
-
-        console.log("🚀 ~ CacheInterceptor ~ intercept ~ cachedResponse:", cachedResponse)
-        if(cachedResponse) {
+        if (cachedResponse) {
             return of(cachedResponse)
         }
 
         return next.handle()
             .pipe(
                 tap((data) => {
-                    console.log(`After... ${JSON.stringify(data)} - ${Date.now() - now}ms`)
-                    this.cache.set({method, url, ...body}, data)
+                    this.cache.set({ method, url, ...body }, data)
                 }),
             );
     }

@@ -14,7 +14,6 @@ export class CacheService {
     }
 
     async get(id: string) {
-        console.log("🚀 ~ CacheService ~ get ~ id:", id)
         await this.wait()
         return this.users.filter(user => user.id = id)
     }

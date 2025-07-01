@@ -15,7 +15,6 @@ class DLL<T> {
         value: T,
         insertAfterNode: DllNode<T> | null = this.tail
     ): DllNode<T> {
-        console.log("🚀 ~ DLL<T> ~ value:", JSON.stringify(value), insertAfterNode?.value)
         const node = new DllNode(value);
         const nextNode = insertAfterNode?.next || null;
         if (insertAfterNode) {
@@ -34,7 +33,6 @@ class DLL<T> {
     }
 
     detach(node: DllNode<T>): DllNode<T> {
-        console.log("🚀 ~ DLL<T> ~ value:", JSON.stringify(node.value))
         if (node.prev) node.prev.next = node.next;
         else this.head = node.next;
         if (node.next) node.next.prev = node.prev;
